@@ -1,7 +1,7 @@
 package com.programmez.samples.gigreservation.domain;
 
 /**
- *
+ * Ticketing
  * @author agnes007
  */
 public class Ticketing {
