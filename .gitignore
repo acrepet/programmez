@@ -7,4 +7,4 @@ foo.txt
 !foo.html
 # Ignore objects and archives.
 *.[oa]
-*/target/*
+target/*
