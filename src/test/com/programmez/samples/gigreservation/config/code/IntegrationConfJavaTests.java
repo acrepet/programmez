@@ -14,7 +14,7 @@ import com.programmez.samples.gigreservation.service.TicketOrderService;
  * Tests with Java configuration
  * @author agnes007
  */
-public class IntegrationTests {
+public class IntegrationConfJavaTests {
 
 	@Test
 	public void orderTenTickets() throws InsufficientTicketsException {

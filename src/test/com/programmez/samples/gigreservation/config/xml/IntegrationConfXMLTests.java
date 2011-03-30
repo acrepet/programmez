@@ -14,7 +14,7 @@ import com.programmez.samples.gigreservation.service.TicketOrderService;
  * Tests with plain XML configuration
  * @author agnes007
  */
-public class IntegrationTests {
+public class IntegrationConfXMLTests {
 
 	@Test
 	public void orderTenTickets() throws InsufficientTicketsException {

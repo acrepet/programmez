@@ -10,22 +10,41 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.programmez.samples.gigreservation.domain.Ticketing;
 import com.programmez.samples.gigreservation.repository.TicketingRepository;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author agnes007
  */
+@Repository
 public class JdbcTicketingRepository implements TicketingRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private DataSource dataSource;
+
+    public JdbcTicketingRepository() {
+    }
 
     public JdbcTicketingRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @PostConstruct
+    public void inittemplate() {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public void updateNbTickets(Ticketing ticketing) {
         jdbcTemplate.update("update ticketing set nbTickets = ? where id = ?", ticketing.getNbTickets(), ticketing.getId());
+    }
+
+    public void setJdbcTemplate(JdbcTemplate template) {
+        jdbcTemplate = template;
     }
 
     @Override
