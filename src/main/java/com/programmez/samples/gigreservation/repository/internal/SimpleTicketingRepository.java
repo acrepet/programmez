@@ -7,7 +7,10 @@ package com.programmez.samples.gigreservation.repository.internal;
 import com.programmez.samples.gigreservation.domain.Ticketing;
 import com.programmez.samples.gigreservation.repository.TicketingNotFoundException;
 import com.programmez.samples.gigreservation.repository.TicketingRepository;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,4 +57,9 @@ public class SimpleTicketingRepository implements TicketingRepository{
         }
         return Ticketing;
     }
+
+	@Override
+	public List<Ticketing> findByBand(String ticketingBand, boolean audit) {
+		return new ArrayList<Ticketing>();
+	}
 }
