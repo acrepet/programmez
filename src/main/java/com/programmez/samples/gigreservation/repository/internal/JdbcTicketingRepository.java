@@ -2,6 +2,7 @@ package com.programmez.samples.gigreservation.repository.internal;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -12,7 +13,6 @@ import com.programmez.samples.gigreservation.domain.Ticketing;
 import com.programmez.samples.gigreservation.repository.TicketingRepository;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -51,6 +51,14 @@ public class JdbcTicketingRepository implements TicketingRepository {
     public Ticketing findById(Long ticketingId) {
         return jdbcTemplate.queryForObject("select id, nbTickets, band from ticketing where id = ?", new TicketingRowMapper(), ticketingId);
     }
+
+    @Override
+    public List<Ticketing> findByBand(String bandName) {
+		JdbcTemplate select = new JdbcTemplate(dataSource);
+		return select.query("select  id, nbTickets, band  from ticketing where band = ?",
+						new Object[] { bandName },
+						new TicketingRowMapper());
+}
 
     private static class TicketingRowMapper implements RowMapper<Ticketing> {
 

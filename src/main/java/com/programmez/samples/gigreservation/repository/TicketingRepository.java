@@ -6,6 +6,7 @@
 package com.programmez.samples.gigreservation.repository;
 
 import com.programmez.samples.gigreservation.domain.Ticketing;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,7 @@ public interface TicketingRepository {
 	Ticketing findById(Long ticketingId);
 
 	void updateNbTickets(Ticketing ticketing);
+
+        List<Ticketing> findByBand(String bandName);
 
 }

@@ -6,6 +6,8 @@
 package com.programmez.samples.gigreservation.service;
 
 import com.programmez.samples.gigreservation.domain.InsufficientTicketsException;
+import com.programmez.samples.gigreservation.domain.Ticketing;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +17,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TicketOrderService {
 
-    	void order(int nbTickets,  Long ticketingId)
+    	public void order(int nbTickets,  Long ticketingId)
 		throws InsufficientTicketsException;
+
+        public List<Ticketing> searchTicketingsByBand(String bandName);
 
 }

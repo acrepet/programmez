@@ -6,9 +6,12 @@ package com.programmez.samples.gigreservation.domain;
  */
 public class Ticketing {
 
-    private final Long id;
+    private Long id;
     private Long nbTickets;
     private String band;
+
+    public Ticketing() {
+    }
 
     public Ticketing(Long id, long inititalNbTickets, String band) {
         this.id = id;
@@ -55,4 +58,35 @@ public class Ticketing {
     public static Ticketing copy(Ticketing ticketing) {
         return new Ticketing(ticketing.getId(),ticketing.getNbTickets(), ticketing.getBand());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ticketing other = (Ticketing) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.nbTickets != other.nbTickets && (this.nbTickets == null || !this.nbTickets.equals(other.nbTickets))) {
+            return false;
+        }
+        if ((this.band == null) ? (other.band != null) : !this.band.equals(other.band)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 97 * hash + (this.nbTickets != null ? this.nbTickets.hashCode() : 0);
+        hash = 97 * hash + (this.band != null ? this.band.hashCode() : 0);
+        return hash;
+    }
+    
 }

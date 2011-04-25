@@ -1,6 +1,7 @@
 package com.programmez.samples.gigreservation.service.internal;
 
 import static java.lang.String.format;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +46,11 @@ public class DefaultTicketOrderService implements TicketOrderService {
         ticketingRepository.updateNbTickets(ticketing);
 
 
+    }
+
+    @Override
+    public List<Ticketing> searchTicketingsByBand(String bandName) {
+        List<Ticketing> ticketings = ticketingRepository.findByBand(bandName);
+        return ticketings;
     }
 }
