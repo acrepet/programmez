@@ -5,6 +5,11 @@
 
 package com.programmez.samples.gigreservation.repository;
 
+import java.util.List;
+
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+
 import com.programmez.samples.gigreservation.domain.Ticketing;
 import java.util.List;
 
@@ -14,10 +19,13 @@ import java.util.List;
  */
 public interface TicketingRepository {
 
+	@Cacheable(value = "ticket", key = "#ticketingId")
 	Ticketing findById(Long ticketingId);
 
+	@CacheEvict(value = {"ticket", "tickets"}, key = "#ticketing.id")
 	void updateNbTickets(Ticketing ticketing);
 
-        List<Ticketing> findByBand(String bandName);
+	@Cacheable(value = "tickets", key = "#ticketingBand", condition = "#ticketingBand.startsWith('A')")
+	List<Ticketing> findByBand(String ticketingBand, boolean audit);
 
 }

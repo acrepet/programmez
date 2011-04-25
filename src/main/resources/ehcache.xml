@@ -1,0 +1,4 @@
+<ehcache>
+	<cache name="ticket" timeToLiveSeconds="100" />
+	<cache name="tickets" timeToLiveSeconds="100" />
+</ehcache>

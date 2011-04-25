@@ -50,7 +50,7 @@ public class DefaultTicketOrderService implements TicketOrderService {
 
     @Override
     public List<Ticketing> searchTicketingsByBand(String bandName) {
-        List<Ticketing> ticketings = ticketingRepository.findByBand(bandName);
+        List<Ticketing> ticketings = ticketingRepository.findByBand(bandName,false);
         return ticketings;
     }
 }
