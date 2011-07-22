@@ -21,7 +21,7 @@ import com.programmez.samples.gigreservation.repository.TicketingRepository;
  *
  * @author agnes007
  */
-@Repository
+@Repository("jdbcTicketingRepository")
 public class JdbcTicketingRepository implements TicketingRepository {
 
     private JdbcTemplate jdbcTemplate;

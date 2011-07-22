@@ -1,13 +1,21 @@
 package com.programmez.samples.gigreservation.domain;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Ticketing
  * @author agnes007
  */
+@Entity
 public class Ticketing {
 
+    @Id
     private Long id;
+    @Basic
     private Long nbTickets;
+    @Basic
     private String band;
 
     public Ticketing() {

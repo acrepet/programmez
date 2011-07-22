@@ -9,22 +9,28 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
                 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-<context:component-scan base-package="com.programmez.samples.gigreservation.service"/>
-<context:component-scan base-package="com.programmez.samples.gigreservation.repository"/>
+    <context:component-scan base-package="com.programmez.samples.gigreservation.service"/>
+    <context:component-scan base-package="com.programmez.samples.gigreservation.repository"/>
 
- <context:annotation-config/>
+    <context:annotation-config/>
 
-	<beans profile="dev">
-		<jdbc:embedded-database id="dataSource" type="H2">
-			<jdbc:script location="classpath:com/programmez/samples/gigreservation/config/sql/schema.sql"/>
-			<jdbc:script location="classpath:com/programmez/samples/gigreservation/config/sql/test-data.sql"/>
-		</jdbc:embedded-database>
-	</beans>
-
-	<beans profile="production">
-		<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/datasource"/>
-	</beans>
+    <beans profile="dev">
+        <jdbc:embedded-database id="dataSource" type="H2">
+            <jdbc:script location="classpath:com/programmez/samples/gigreservation/config/sql/schema.sql"/>
+            <jdbc:script location="classpath:com/programmez/samples/gigreservation/config/sql/test-data.sql"/>
+        </jdbc:embedded-database>
 	
-	
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+        </bean>
+        <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+ 
+    </beans>
+
+    <beans profile="production">
+        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/datasource"/>
+    </beans>
 	
 </beans>
