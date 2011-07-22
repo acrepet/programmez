@@ -19,4 +19,4 @@ project directly from its POM.  Otherwise, generate IDE metadata with
         - or -
     >$ mvn idea:idea
 
-essai
+essai 2
