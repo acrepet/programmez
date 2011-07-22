@@ -18,3 +18,5 @@ project directly from its POM.  Otherwise, generate IDE metadata with
     >$ mvn eclipse:eclipse
         - or -
     >$ mvn idea:idea
+
+essai
